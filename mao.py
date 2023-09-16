@@ -1,6 +1,6 @@
 from peca import peca
 
-class mao:
+class mao_jogador:
     def __init__(self):
         self.mao = []
     
