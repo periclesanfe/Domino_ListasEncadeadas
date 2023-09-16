@@ -2,7 +2,7 @@ class peca:
     def __init__(self, value):
         self.value = value
         self.esquerda = value[0]
-        self.direita = value[1]
+        self.direita = value[2]
         self.next = None
         self.prev = None
     
