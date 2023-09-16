@@ -8,7 +8,7 @@ class peca:
     
     
     def __str__(self):
-        return str(self.value)
+        return f'[{self.esquerda}-{self.direita}]'
     
     
     def inverte_peca(self):
