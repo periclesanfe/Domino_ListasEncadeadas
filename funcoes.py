@@ -24,8 +24,7 @@ def criar_mao(domino):
     mao.add_peca(domino.pop(randint(0,len(domino)-1)))
   return mao
 
-if __name__ == "__main__":
-  domino = criar_domino()
+def mostrar_domino(domino):
   saida = ''
   for i in domino:
     saida += str(i) + ' '
