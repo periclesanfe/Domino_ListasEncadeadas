@@ -6,6 +6,8 @@ class peca:
         self.next = None
         self.prev = None
     
+    def valor(self):
+        return self.value
     
     def __str__(self):
         return f'[{self.esquerda}-{self.direita}]'

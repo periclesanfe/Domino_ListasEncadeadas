@@ -21,7 +21,7 @@ Considerando um jogo de dominó em que os jogadores combinaram peças com númer
 ## PARTICIPANTES:
 * André Filipe Gomes Rocha / https://github.com/Andrefgr24
 * Péricles Andrade Feitoza / https://github.com/periclesanfe
-* Antonio Alan ***
+* Antonio Alan Farias / https://github.com/farias-alan
 
 
 ## REFERÊNCIAS:

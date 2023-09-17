@@ -18,8 +18,8 @@ def embaralhar_domino(domino):
   return domino
 
 
-def criar_mao(domino):
-  mao = mao_jogador()
+def criar_mao(domino, nome):
+  mao = mao_jogador(nome)
   for i in range(7):
     mao.add_peca(domino.pop(randint(0,len(domino)-1)))
   return mao
@@ -29,3 +29,15 @@ def mostrar_domino(domino):
   for i in domino:
     saida += str(i) + ' '
   print(saida)
+  
+def verifica_venceu(mao):
+  if len(mao) == 0:
+    return True
+  else:
+    return False
+
+def verifica_peca(mesa, peca):
+  if mesa[0] == peca[0] or mesa[0] == peca[1] or mesa[-1] == peca[0] or mesa[-1] == peca[1]:
+    return True
+  else:
+    return False
