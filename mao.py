@@ -30,4 +30,4 @@ class mao_jogador:
         saida = ''
         for peca in self.mao:
             saida += str(peca) + ' '
-        print(saida)
+        return saida
