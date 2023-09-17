@@ -16,3 +16,6 @@ class mao_jogador:
     def tira_peca(self, peca):
         return self.mao.pop(peca)
     
+    def mostrar_mao(self):
+        for peca in self.mao:
+            print(peca)
