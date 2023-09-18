@@ -53,6 +53,7 @@ class Tabuleiro:
             self.peças.append(peca)
             self.cabeça = peca.esquerda
             self.calda = peca.direita
+           # jogador.retira_peca(index)
             return True
         elif self.cabeça in peca.valor:
             if self.cabeça == peca.esquerda:
@@ -61,7 +62,7 @@ class Tabuleiro:
             self.peças[0].anterior = peca
             self.peças.insert(0, peca)
             self.cabeça = peca.esquerda
-            jogador.retira_peca(index)
+           # jogador.retira_peca(index)
             return True
         elif self.calda in peca.valor:
             if self.calda == peca.direita:
@@ -70,7 +71,7 @@ class Tabuleiro:
             self.peças[-1].proximo = peca
             self.peças.append(peca)
             self.calda = peca.direita
-            jogador.retira_peca(index)
+           # jogador.retira_peca(index)
             return True
         return False
         
@@ -150,6 +151,8 @@ while Estado_do_jogo == 2:
                     break
                 elif 1 <= peca_escolhida <= len(jogador_vez.mao):
                     if tabuleiro.adicionar_peca(jogador_vez.mao[peca_escolhida-1], peca_escolhida-1):
+                        remover = jogador_vez.mao.pop(peca_escolhida -1)
+                        qntd_passes = 0
                         os.system('cls')
                     break
                 else:
