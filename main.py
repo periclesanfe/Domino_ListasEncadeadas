@@ -53,7 +53,6 @@ class Tabuleiro:
             self.peças.append(peca)
             self.cabeça = peca.esquerda
             self.calda = peca.direita
-           # jogador.retira_peca(index)
             return True
         elif self.cabeça in peca.valor:
             if self.cabeça == peca.esquerda:
@@ -62,7 +61,6 @@ class Tabuleiro:
             self.peças[0].anterior = peca
             self.peças.insert(0, peca)
             self.cabeça = peca.esquerda
-           # jogador.retira_peca(index)
             return True
         elif self.calda in peca.valor:
             if self.calda == peca.direita:
@@ -71,7 +69,6 @@ class Tabuleiro:
             self.peças[-1].proximo = peca
             self.peças.append(peca)
             self.calda = peca.direita
-           # jogador.retira_peca(index)
             return True
         return False
         
@@ -118,7 +115,7 @@ while True: # Definir quantidade de jogadores
     num_jogadores = int(input('Digite o número de jogadores: '))
     if 2 <= num_jogadores <= 4:
         break
-    os.system('clear')
+    os.system('cls')
     print('O número de jogadores deve ser entre 2 e 4')
     continue
 
