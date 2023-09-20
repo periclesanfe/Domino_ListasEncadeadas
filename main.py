@@ -43,43 +43,51 @@ class Jogador:
 # Classe que representa o tabuleiro
 class Tabuleiro:
     def __init__(self):
-        self.peças = []  # Lista de peças no tabuleiro
-        self.cabeça = None  # Valor da direita da última peça
-        self.calda = None  # Valor da esquerda da primeira peça
+        self.cabeça = None
+        self.calda = None
+        self.cabeça_valor = None  # Valor da direita da última peça
+        self.calda_valor = None  # Valor da esquerda da primeira peça
 
-    def adicionar_peca(self, peca, index):
+    def adicionar_peca(self, peca):
         # Verifica se a peça pode ser adicionada às extremidades
-        if not self.peças: # Se o tabuleiro estiver vazio, a primeira peça pode ser adicionada
-            self.peças.append(peca)
-            self.cabeça = peca.esquerda
-            self.calda = peca.direita
+        if not self.cabeça: # Se o tabuleiro estiver vazio, a primeira peça pode ser adicionada
+            self.cabeça = peca
+            self.calda = peca
+            self.cabeça_valor = peca.esquerda
+            self.calda_valor = peca.direita
             return True
-        elif self.cabeça in peca.valor:
-            if self.cabeça == peca.esquerda:
+        elif self.cabeça_valor in peca.valor:
+            if self.cabeça_valor == peca.esquerda:
                 peca.inverte_peca()
-            peca.proximo = self.peças[0]
-            self.peças[0].anterior = peca
-            self.peças.insert(0, peca)
-            self.cabeça = peca.esquerda
+            peca.proximo = self.cabeça
+            self.cabeça.anterior = peca
+            self.cabeça_valor = peca.esquerda
+            self.cabeça = peca
             return True
-        elif self.calda in peca.valor:
-            if self.calda == peca.direita:
+        elif self.calda_valor in peca.valor:
+            if self.calda_valor == peca.direita:
                 peca.inverte_peca()
-            peca.anterior = self.peças[-1]
-            self.peças[-1].proximo = peca
-            self.peças.append(peca)
-            self.calda = peca.direita
+            peca.anterior = self.calda
+            self.calda.proximo = peca
+            self.calda_valor = peca.direita
+            self.calda = peca
             return True
         return False
-        
+
+    
+    def constroi_saida(self, peca):
+        if not peca.proximo:
+            return str(peca)
+        else:
+            return str(peca) + self.constroi_saida(peca.proximo)
+      
         
     def __str__(self):
-        if not self.peças:
+        if not self.cabeça:
             return 'Tabuleiro vazio'
-        saida = ''
-        for peca in self.peças:
-            saida += str(peca) + ' '
-        return saida
+        return self.constroi_saida(self.cabeça)
+
+        
 
     def verificar_estado_do_jogo(self, jogador, qntd_passes):
         if jogador.mao == []:
@@ -115,7 +123,7 @@ while True: # Definir quantidade de jogadores
     num_jogadores = int(input('Digite o número de jogadores: '))
     if 2 <= num_jogadores <= 4:
         break
-    os.system('cls')
+    os.system('clear')
     print('O número de jogadores deve ser entre 2 e 4')
     continue
 
@@ -129,7 +137,7 @@ domino = criar_conjunto()
 mostrar_domino(domino)
 distribuir_maos(jogadores, domino)
 tabuleiro = Tabuleiro()
-os.system('cls')
+os.system('clear')
 
 qntd_passes = 0
 Estado_do_jogo = 2
@@ -144,13 +152,13 @@ while Estado_do_jogo == 2:
                 peca_escolhida = int(input('Digite o número da peça que deseja jogar: '))
                 if peca_escolhida == 0:
                     qntd_passes += 1
-                    os.system('cls')
+                    os.system('clear')
                     break
                 elif 1 <= peca_escolhida <= len(jogador_vez.mao):
-                    if tabuleiro.adicionar_peca(jogador_vez.mao[peca_escolhida-1], peca_escolhida-1):
+                    if tabuleiro.adicionar_peca(jogador_vez.mao[peca_escolhida-1]):
                         remover = jogador_vez.mao.pop(peca_escolhida -1)
                         qntd_passes = 0
-                        os.system('cls')
+                        os.system('clear')
                     break
                 else:
                     raise ErroValorInvalido
